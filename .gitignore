@@ -1,0 +1,10 @@
+x64/Debug/
+x64/Release/
+ZegoExpressQuickStart/x64/Debug/
+ZegoExpressQuickStart/x64/Release/
+ipch/
+.vs/
+*.VC.db
+*.VC.VC.*
+*.aps
+Deps/ZegoExpress/
