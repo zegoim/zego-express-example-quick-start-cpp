@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "ZegoExpressEngine.h"
+#include "ZegoExpressSDK.h"
 using namespace ZEGO::EXPRESS;
 
 class CZegoExpressQuickStartDlg;

@@ -60,7 +60,7 @@ CZegoExpressQuickStartDlg::~CZegoExpressQuickStartDlg()
 {
 	if (engine)
 	{
-		ZegoExpressEngine::destroyEngine(engine);
+		ZegoExpressSDK::destroyEngine(engine);
 		engine = nullptr;
 	}
 }
@@ -187,7 +187,6 @@ HCURSOR CZegoExpressQuickStartDlg::OnQueryDragIcon()
 
 void CZegoExpressQuickStartDlg::OnBnClickedButtonCreateEngine()
 {
-	// TODO: 在此添加控件通知处理程序代码
 	if (engine == nullptr) {
 
 		PrintLog("Do Step1: Create Engine");
@@ -203,7 +202,7 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonCreateEngine()
 	
 		bool isTestEnv = ((CButton*)GetDlgItem(IDC_RADIO_IS_TEST_ENV))->GetCheck();
 
-		engine = ZegoExpressEngine::createEngine(appID, appSign, isTestEnv, ZEGO_SCENARIO_GENERAL, nullptr);
+		engine = ZegoExpressSDK::createEngine(appID, appSign, isTestEnv, ZEGO_SCENARIO_GENERAL, nullptr);
 		engine->setDebugVerbose(true, ZEGO_LANGUAGE_CHINESE);
 
  		eventHandler = std::make_shared<MyEventHandler>(this);
@@ -214,7 +213,6 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonCreateEngine()
 
 void CZegoExpressQuickStartDlg::OnBnClickedButtonLoginRoom()
 {
-	// TODO: 在此添加控件通知处理程序代码
 	if (engine != nullptr) {
 
 		PrintLog("Do Step2: Login Room");
@@ -240,7 +238,6 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonLoginRoom()
 
 void CZegoExpressQuickStartDlg::OnBnClickedButtonPublishStream()
 {
-	// TODO: 在此添加控件通知处理程序代码
 	if (engine != nullptr) {
 
 		PrintLog("Do Step3: Publish Stream");
@@ -260,7 +257,6 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonPublishStream()
 
 void CZegoExpressQuickStartDlg::OnBnClickedButtonPlayStream()
 {
-	// TODO: 在此添加控件通知处理程序代码
 	if (engine != nullptr) {
 		PrintLog("Do Step4: Play Stream");
 
@@ -297,9 +293,6 @@ void CZegoExpressQuickStartDlg::SetHScroll()
 	{
 		log_list_.GetText(index, str);
 		s = dc->GetTextExtent(str, str.GetLength() + 1);
-		// 获取字符串的像素大小
-		// 如果新的字符串宽度大于先前的水平滚动条宽度，则重新设置滚动条宽度
-		// 得到滚动条的宽度
 		temp = (long)SendDlgItemMessage(IDC_LIST_LOG_VIEW, LB_GETHORIZONTALEXTENT, 0, 0);
 		if (s.cx > temp)
 		{
