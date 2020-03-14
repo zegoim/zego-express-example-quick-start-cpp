@@ -206,7 +206,7 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonCreateEngine()
 		engine->setDebugVerbose(true, ZEGO_LANGUAGE_CHINESE);
 
  		eventHandler = std::make_shared<MyEventHandler>(this);
-  		engine->addEventHandler(eventHandler);
+  		engine->setEventHandler(eventHandler);
 	}
 }
 
@@ -232,7 +232,7 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonLoginRoom()
 		ZegoUser user;
 		user.userID = UserID;
 		user.userName = UserName;
-		engine->loginRoom(RoomID, user, nullptr);
+		engine->loginRoom(RoomID, user);
 	}
 }
 
