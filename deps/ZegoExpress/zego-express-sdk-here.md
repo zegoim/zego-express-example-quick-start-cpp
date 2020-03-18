@@ -1,4 +1,4 @@
-# Please put the ZegoExpress include and lib directory under this path
+# Please put the ZegoExpress sdk under this path
 
 Download SDK from:
 

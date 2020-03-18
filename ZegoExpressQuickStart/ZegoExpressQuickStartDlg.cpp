@@ -203,7 +203,6 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonCreateEngine()
 		bool isTestEnv = ((CButton*)GetDlgItem(IDC_RADIO_IS_TEST_ENV))->GetCheck();
 
 		engine = ZegoExpressSDK::createEngine(appID, appSign, isTestEnv, ZEGO_SCENARIO_GENERAL, nullptr);
-		engine->setDebugVerbose(true, ZEGO_LANGUAGE_CHINESE);
 
  		eventHandler = std::make_shared<MyEventHandler>(this);
   		engine->setEventHandler(eventHandler);
@@ -245,11 +244,10 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonPublishStream()
 		CString text;
 		GetDlgItem(IDC_EDIT_PUBLISH_STREAM_ID)->GetWindowTextW(text);
 		std::string streamID = CStringA(text.GetBuffer());
-		auto aaa = streamID.c_str();
 
 		engine->startPublishing(streamID);
 
-		ZegoCanvas canvas(GetDlgItem(IDC_STATIC_PREVIEW_VIEW)->GetSafeHwnd(), ZEGO_VIEW_MODE_ASPECT_FIT);
+		ZegoCanvas canvas(GetDlgItem(IDC_STATIC_PREVIEW_VIEW)->GetSafeHwnd());
 		engine->startPreview(&canvas);
 	}
 }
@@ -264,7 +262,7 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonPlayStream()
 		GetDlgItem(IDC_EDIT_PLAY_STREAM_ID)->GetWindowTextW(text);
 		std::string streamID = CStringA(text.GetBuffer());
 
-		ZegoCanvas canvas(GetDlgItem(IDC_STATIC_PLAY_VIEW)->GetSafeHwnd(), ZEGO_VIEW_MODE_ASPECT_FIT);
+		ZegoCanvas canvas(GetDlgItem(IDC_STATIC_PLAY_VIEW)->GetSafeHwnd());
 		engine->startPlayingStream(streamID, &canvas);
 	}
 }
@@ -333,19 +331,19 @@ void MyEventHandler::onDebugError(int errorCode, const std::string& funcName, co
 	PrintLog("onDebugError: errorCode=%d, funcName=%s, info=%s", errorCode, funcName.c_str(), info.c_str());
 }
 
-void MyEventHandler::onRoomStateUpdate(const std::string& roomID, ZegoRoomState state, int errorCode)
+void MyEventHandler::onRoomStateUpdate(const std::string& roomID, ZegoRoomState state, int errorCode, const std::string& extendData)
 {
-	PrintLog("onRoomStateUpdate: roomId=%s, state=%d, errorCode=%d", roomID.c_str(), state, errorCode);
+	PrintLog("onRoomStateUpdate: roomId=%s, state=%d, errorCode=%d, extendData=%s", roomID.c_str(), state, errorCode, extendData.c_str());
 }
 
-void MyEventHandler::onPublisherStateUpdate(const std::string& streamID, ZegoPublisherState state, int errorCode)
+void MyEventHandler::onPublisherStateUpdate(const std::string& streamID, ZegoPublisherState state, int errorCode, const std::string& extendData)
 {
-	PrintLog("onPublisherStateUpdate: streamID=%s, state=%d, errorCode=%d", streamID.c_str(), state, errorCode);
+	PrintLog("onPublisherStateUpdate: streamID=%s, state=%d, errorCode=%d, extendData=%s", streamID.c_str(), state, errorCode, extendData.c_str());
 }
 
-void MyEventHandler::onPlayerStateUpdate(const std::string& streamID, ZegoPlayerState state, int errorCode)
+void MyEventHandler::onPlayerStateUpdate(const std::string& streamID, ZegoPlayerState state, int errorCode, const std::string& extendData)
 {
-	PrintLog("onPlayerStateUpdate: streamID=%s, state=%d, errorCode=%d", streamID.c_str(), state, errorCode);
+	PrintLog("onPlayerStateUpdate: streamID=%s, state=%d, errorCode=%d, extendData=%s", streamID.c_str(), state, errorCode, extendData.c_str());
 }
 
 

@@ -13,10 +13,10 @@ public:
 	MyEventHandler(CZegoExpressQuickStartDlg* dlg);
 	~MyEventHandler();
 
-	void onDebugError(int errorCode, const std::string& funcName, const std::string& info);
-	void onRoomStateUpdate(const std::string& roomID, ZegoRoomState state, int errorCode);
-	void onPublisherStateUpdate(const std::string& streamID, ZegoPublisherState state, int errorCode); 
-	void onPlayerStateUpdate(const std::string& streamID, ZegoPlayerState state, int errorCode);
+	void onDebugError(int errorCode, const std::string& funcName, const std::string& info) override;
+	void onRoomStateUpdate(const std::string& roomID, ZegoRoomState state, int errorCode, const std::string& extendData) override;
+	void onPublisherStateUpdate(const std::string& streamID, ZegoPublisherState state, int errorCode, const std::string& extendData) override;
+	void onPlayerStateUpdate(const std::string& streamID, ZegoPlayerState state, int errorCode, const std::string& extendData) override;
 
 private:
 	void PrintLog(const char * format, ...);
