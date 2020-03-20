@@ -245,7 +245,7 @@ void CZegoExpressQuickStartDlg::OnBnClickedButtonPublishStream()
 		GetDlgItem(IDC_EDIT_PUBLISH_STREAM_ID)->GetWindowTextW(text);
 		std::string streamID = CStringA(text.GetBuffer());
 
-		engine->startPublishing(streamID);
+		engine->startPublishingStream(streamID);
 
 		ZegoCanvas canvas(GetDlgItem(IDC_STATIC_PREVIEW_VIEW)->GetSafeHwnd());
 		engine->startPreview(&canvas);
